@@ -8,13 +8,23 @@ To get a PHPMailer instance:
 
 	$mailer = IoC::resolve('mailer');
 
-Or, since your controllers have dynamic access to the IoC container:
+Then, use it just like you normally might:
 
-	$this->mailer->send($message);
+	$mailer->Subject  = "Laravel Rocks";
+	$mailer->Body     = "Hi! Laravel is awesomesauce!";
+
+	if(!$mail->Send()) {
+		echo 'Message was not sent.';
+		echo 'Mailer error: ' . $mail->ErrorInfo;
+	} else {
+		echo 'Message has been sent.';
+	}
+
+The default "From:" address can be set in the configuration file.
 
 
 # PHPMailer - Full Featured Email Transfer Class for PHP
 
 Version 5.2.1 (January 16, 2012)
 
-- Homepage:      https://code.google.com/a/apache-extras.org/p/phpmailer/
+- Homepage: https://code.google.com/a/apache-extras.org/p/phpmailer/
