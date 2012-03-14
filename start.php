@@ -12,7 +12,16 @@ IoC::singleton('mailer', function()
 
 	$mailer = new PHPMailer();
 	$mailer->PluginDir = Bundle::path('phpmailer').'lib';
-	$mailer->SetFrom( Config::get('phpmailer::from'), Config::get('phpmailer::from_name'));
+
+	$config = Config::get('phpmailer::phpmailer', array());
+
+	foreach( $config as $key => $value ) {
+		if ($value===true) {
+			$mailer->{$key}();
+		} else {
+			$mailer->{$key}($value);
+		}
+	}
 
 	return $mailer;
 
