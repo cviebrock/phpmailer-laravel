@@ -9,13 +9,12 @@ php artisan bundle:install phpmailer
 To get a PHPMailer instance:
 
 ```php
-<?php
 $mailer = IoC::resolve('phpmailer');
 ```
 
 Then, use it just like you normally might:
 
-```<?php
+```php
 try {
 	$mailer->AddAddress( $user->email, $user->name );
 	$mailer->Subject  = "Laravel Rocks";
@@ -29,9 +28,8 @@ try {
 
 The default "From:" address -- among other settings -- can be defined in the configuration file.
 
+* * *
 
-# PHPMailer - Full Featured Email Transfer Class for PHP
-
-Version 5.2.1 (January 16, 2012)
-
-- Homepage: [https://code.google.com/a/apache-extras.org/p/phpmailer/]
+Includes *PHPMailer - Full Featured Email Transfer Class for PHP*
+- Version: 5.2.1 (January 16, 2012)
+- Homepage: https://code.google.com/a/apache-extras.org/p/phpmailer/
