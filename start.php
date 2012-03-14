@@ -1,5 +1,6 @@
 <?php
 
+// Configure the autoloader
 
 Autoloader::map(array(
 	'PHPMailer' => Bundle::path('phpmailer').'lib'.DS.'class.phpmailer.php',
@@ -7,11 +8,22 @@ Autoloader::map(array(
 
 
 // Register a mailer in the IoC container
-IoC::singleton('mailer', function()
+IoC::singleton('phpmailer', function()
 {
 
-	$mailer = new PHPMailer();
+	// Instantiate a new PHPMailer.  Passing 'true' to the constructor
+	// means that exceptions are thrown on errors, which you can
+	// catch in your application.
+
+	$mailer = new PHPMailer(true);
+
+
+	// set the default plugin dir for the instance
+
 	$mailer->PluginDir = Bundle::path('phpmailer').'lib';
+
+
+	// Load the default settings, if they exist.
 
 	$config = Config::get('phpmailer::phpmailer', array());
 
@@ -22,6 +34,8 @@ IoC::singleton('mailer', function()
 			$mailer->{$key}($value);
 		}
 	}
+
+	// Return the instance.
 
 	return $mailer;
 
