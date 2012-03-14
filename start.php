@@ -20,7 +20,7 @@ IoC::singleton('phpmailer', function()
 
 	// set the default plugin dir for the instance
 
-	$mailer->PluginDir = Bundle::path('phpmailer').'lib';
+	$mailer->PluginDir = Bundle::path('phpmailer').'lib'.DS;
 
 
 	// Load the default settings, if they exist.
@@ -28,10 +28,12 @@ IoC::singleton('phpmailer', function()
 	$config = Config::get('phpmailer::phpmailer', array());
 
 	foreach( $config as $key => $value ) {
-		if ($value===true) {
+		if (is_null($value)) {
 			$mailer->{$key}();
+		} else if (is_array($value)) {
+			call_user_func_array(array($mailer, $key), $value);
 		} else {
-			$mailer->{$key}($value);
+			$mailer->{$key} = $value;
 		}
 	}
 

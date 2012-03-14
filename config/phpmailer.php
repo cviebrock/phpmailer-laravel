@@ -10,24 +10,34 @@
  * For example, if the configuration contains:
  *
  *   array(
- *     'From'   => 'laravel@example.com',
- *     'IsSMTP' => true,
+ *     'SetFrom'   => array('colin@example.com', 'Colin Viebrock'),
+ *     'IsSMTP' => null,
  *     'Host'   => 'smtp@example.com',
  *   )
  *
  * that would be equivalent to running this when starting
  * a new mailer instance:
  *
- *   $mailer->From = 'laravel@example.com';
+ *   $mailer->SetFrom('Colin@example.com', 'Colin Viebrock');
  *   $mailer->IsSMTP();
  *   $mailer->Host = 'smtp@example.com';
  *
- * Sadly, this only works for settings that take no arguments
- * (like "IsSMTP"), or single arguments.  Suggestions on how
- * to better handle this are welcome!
+ * Sadly, this is a bit limited, mostly because of how PHPMailer handles
+ * setting values.  Sometimes it's:
+ *
+ *    $foo->bar = $value
+ *
+ * and sometimes it's:
+ *
+ *    $foo->bar($value);
+ *
+ * Suggestions on how to better handle this are welcome, although the
+ * most common elements that you might want to prepopulate (from address,
+ * SMTP host and info) can be configured.
  */
 
 return array(
-	'From'     => 'phpmailer-laravel@example.com',
-	'FromName' => 'PHPMailer Laravel Bundle',
+	'SetFrom'    => array('colin@example.com','Colin Viebrock'),
+	'IsSMTP'     => null,
+	'Host'       => 'smtp.example.com',
 );
