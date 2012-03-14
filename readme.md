@@ -2,29 +2,36 @@
 
 A Laravel PHPMailer bundle, installable via the Artisan CLI:
 
-	php artisan bundle:install phpmailer
+```
+php artisan bundle:install phpmailer
+```
 
 To get a PHPMailer instance:
 
-	$mailer = IoC::resolve('mailer');
+```php
+<?php
+$mailer = IoC::resolve('phpmailer');
+```
 
 Then, use it just like you normally might:
 
+```<?php
+try {
+	$mailer->AddAddress( $user->email, $user->name );
 	$mailer->Subject  = "Laravel Rocks";
 	$mailer->Body     = "Hi! Laravel is awesomesauce!";
+	$mailer->Send();
+} catch (Exception $e) {
+	echo 'Message was not sent.';
+	echo 'Mailer error: ' . $e->getMessage();
+}
+```
 
-	if(!$mail->Send()) {
-		echo 'Message was not sent.';
-		echo 'Mailer error: ' . $mail->ErrorInfo;
-	} else {
-		echo 'Message has been sent.';
-	}
-
-The default "From:" address can be set in the configuration file.
+The default "From:" address -- among other settings -- can be defined in the configuration file.
 
 
 # PHPMailer - Full Featured Email Transfer Class for PHP
 
 Version 5.2.1 (January 16, 2012)
 
-- Homepage: https://code.google.com/a/apache-extras.org/p/phpmailer/
+- Homepage: [https://code.google.com/a/apache-extras.org/p/phpmailer/]
