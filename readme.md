@@ -4,6 +4,15 @@ A Laravel PHPMailer bundle, installable via the Artisan CLI:
 
     php artisan bundle:install phpmailer
 
+Add it to `application/bundles.php`:
+
+    return array(
+        ...
+        'phpmailer' => array(
+            'auto'  => true
+        ),
+        ...
+    );
 
 To get a PHPMailer instance:
 
