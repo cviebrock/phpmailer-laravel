@@ -8,7 +8,7 @@ Autoloader::map(array(
 
 
 // Register a mailer in the IoC container
-IoC::singleton('phpmailer', function()
+IoC::register('phpmailer', function()
 {
 
 	// Instantiate a new PHPMailer.  Passing 'true' to the constructor
