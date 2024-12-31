@@ -1,5 +1,11 @@
 # PHPMailer Bundle, by Colin Viebrock
 
+> [!WARNING]
+> This project is no longer maintained.  If you want to make changes, please [fork your own copy](https://github.com/cviebrock/phpmailer-laravel/fork)
+> and use that in your Laravel 3 projects.
+
+* * *
+
 A Laravel PHPMailer bundle, installable via the Artisan CLI:
 
     php artisan bundle:install phpmailer
